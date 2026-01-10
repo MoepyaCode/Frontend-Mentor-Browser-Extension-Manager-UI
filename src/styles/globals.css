@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-noto-sans: var(--font-noto-sans);
+}
+
+body {
+  font-family: var(--font-noto-sans);
+}
