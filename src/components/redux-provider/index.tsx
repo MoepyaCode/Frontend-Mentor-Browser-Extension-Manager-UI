@@ -1,6 +1,5 @@
 'use client'
 import Store from '@/src/store'
-import React from 'react'
 import { Provider } from 'react-redux'
 
 function ReduxProvider(props: Omit<BaseProps, 'className'>) {

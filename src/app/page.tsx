@@ -3,6 +3,12 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { fetchExtensions } from "../store/reducer";
 import { useExtension } from "../hooks/useExtension";
+import Screen from "../layout/Screen";
+import NavBar from "../components/navigation";
+import Section from "../layout/Section";
+import Header from "../layout/Header";
+import FilterButtons from "../components/filter-buttons";
+import ExtensionsList from "../components/extensions-list";
 
 export default function Home() {
   const { show, data } = useAppSelector(state => state["reducer/extensions"].extensions)
@@ -10,7 +16,7 @@ export default function Home() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (data !== null) return
+    if (data) return
     dispatch(fetchExtensions())
   }, [])
 
@@ -20,8 +26,19 @@ export default function Home() {
   }, [show, data])
 
   return (
-    <div>
+    <Screen className="flex flex-col gap-10">
+      <NavBar />
 
-    </div>
+      <Section>
+        <div className="flex flex-col gap-5 sm:flex-row sm:justify-between">
+          <Header title="Extension List" />
+          <FilterButtons />
+        </div>
+
+        <div>
+          {renderList && <ExtensionsList renderList={renderList} />}
+        </div>
+      </Section>
+    </Screen>
   );
 }

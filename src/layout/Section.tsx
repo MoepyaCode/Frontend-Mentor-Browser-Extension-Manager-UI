@@ -4,7 +4,7 @@ function Section(props: Partial<BaseProps>) {
     const { className, children } = props
 
     return (
-        <section className={` ${className}`}>
+        <section className={`flex flex-col gap-8 ${className}`}>
             {children}
         </section>
     )

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ExtensionFilters } from "../enums/extension.enum";
-import { ExtensionHook, ExtensionI, ExtensionState } from "../types/extension";
+import { ExtensionHook, ExtensionI } from "../types/extension";
 
 export function useExtension(): ExtensionHook {
   const [renderList, setRenderList] = useState<ExtensionI[] | null>(null);

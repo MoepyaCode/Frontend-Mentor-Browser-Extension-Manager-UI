@@ -1,5 +1,5 @@
 import { ExtensionI, ExtensionState } from "@/src/types/extension";
-import { isAction, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 export type ToggleExtentionPayloadAction = {
   name: ExtensionI["name"];

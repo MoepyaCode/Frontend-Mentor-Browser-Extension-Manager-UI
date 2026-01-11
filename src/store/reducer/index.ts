@@ -1,14 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  toggleExtension,
+  toggleExtension as toggleExtensionAction,
   ToggleExtentionPayloadAction,
 } from "../actions/extensions/toggleExtension";
 import { ExtensionI, ExtensionState } from "@/src/types/extension";
 import { ExtensionFilters } from "@/src/enums/extension.enum";
 import {
-  toggleExtensionShow,
+  toggleExtensionShow as toggleExtensionShowAction,
   ToggleExtensionShow,
 } from "../actions/extensions/toggleExtensionShow";
+import {
+  removeExtensionAction,
+  RemoveExtensionPayloadAction,
+} from "../actions/removeExtension";
 
 export const fetchExtensions = createAsyncThunk(
   "fetch/extensions",
@@ -20,7 +24,7 @@ export const fetchExtensions = createAsyncThunk(
 
 const initialState: ExtensionState = {
   extensions: {
-    show: ExtensionFilters.Inactive,
+    show: ExtensionFilters.All,
     data: null,
   },
   loading: false,
@@ -35,11 +39,13 @@ const ExtensionSlice = createSlice({
     toggleExtension: (
       state,
       action: PayloadAction<ToggleExtentionPayloadAction>
-    ) => toggleExtension(state, action),
-    toggleExtensionToggle: (
+    ) => toggleExtensionAction(state, action),
+    toggleExtensionShow: (state, action: PayloadAction<ToggleExtensionShow>) =>
+      toggleExtensionShowAction(state, action),
+    removeExtension: (
       state,
-      action: PayloadAction<ToggleExtensionShow>
-    ) => toggleExtensionShow(state, action),
+      action: PayloadAction<RemoveExtensionPayloadAction>
+    ) => removeExtensionAction(state, action),
   },
   extraReducers: (builders) => {
     builders
@@ -62,5 +68,5 @@ const ExtensionSlice = createSlice({
   },
 });
 
-export const {} = ExtensionSlice.actions;
+export const { toggleExtension, toggleExtensionShow, removeExtension } = ExtensionSlice.actions;
 export default ExtensionSlice;
