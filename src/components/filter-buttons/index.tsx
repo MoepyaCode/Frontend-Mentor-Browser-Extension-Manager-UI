@@ -19,7 +19,7 @@ function FilterButtons() {
         return (
             <button
                 key={index}
-                className={`px-5 py-2.5 ${isCurrentFilter ? 'bg-[#C7231A] text-[#FBFDFE]' : 'bg-[#FBFDFE] text-[#091540]'} transition-colors duration-300 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,.1)] cursor-pointer`}
+                className={`px-5 py-2.5 ${isCurrentFilter ? 'bg-[#C7231A] text-[#FBFDFE] dark:text-[#091540]' : 'bg-[#FBFDFE] dark:bg-[#2F364B] text-[#091540] dark:text-[#FBFDFE]'} transition-colors duration-300 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,.1)] cursor-pointer`}
                 onClick={onClick}>
                 {key}
             </button>

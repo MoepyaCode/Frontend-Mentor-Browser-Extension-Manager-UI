@@ -9,11 +9,13 @@ import Section from "../layout/Section";
 import Header from "../layout/Header";
 import FilterButtons from "../components/filter-buttons";
 import ExtensionsList from "../components/extensions-list";
+import { useTheme } from "../hooks/useTheme";
 
 export default function Home() {
   const { show, data } = useAppSelector(state => state["reducer/extensions"].extensions)
   const { renderList, filterList } = useExtension()
   const dispatch = useAppDispatch()
+  const {} = useTheme()
 
   useEffect(() => {
     if (data) return
@@ -29,7 +31,7 @@ export default function Home() {
     <Screen className="flex flex-col gap-10">
       <NavBar />
 
-      <Section>
+      <Section className="dark:text-[#FBFDFE]">
         <div className="flex flex-col gap-5 sm:flex-row sm:justify-between">
           <Header title="Extension List" />
           <FilterButtons />
