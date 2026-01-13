@@ -12,13 +12,11 @@ export function useTheme() {
 
   useEffect(() => {
     const localStorageTheme = getStorageTheme();
-    console.log({ localStorageTheme });
-    console.log(localStorageTheme === ThemesEnum.Dark);
 
     if (
       localStorageTheme === ThemesEnum.Dark ||
       (!localStorageTheme &&
-        window.matchMedia("prefer-color-scheme: dark").matches)
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       const latestTheme = ThemesEnum.Dark;
       return updateTheme(latestTheme);
@@ -28,8 +26,9 @@ export function useTheme() {
   }, []);
 
   useEffect(() => {
-    console.log({ theme });
-    updateRootElement(theme);
+    if (theme) {
+      updateRootElement(theme);
+    }
   }, [theme]);
 
   return { theme, updateTheme };

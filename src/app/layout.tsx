@@ -21,7 +21,33 @@ export default function RootLayout({
 
   return (
     <ReduxProvider>
-      <html lang={`en dark`}>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  try {
+                    const theme = localStorage.getItem('theme');
+                    const root = document.documentElement;
+                    
+                    if (theme === 'dark' || theme === 'light') {
+                      root.classList.add(theme);
+                    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      root.classList.add('dark');
+                    } else {
+                      root.classList.add('light');
+                    }
+                    
+                    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                      root.style.backgroundColor = '#091540';
+                    }
+                  } catch (e) {}
+                })();
+              `,
+            }}
+          />
+        </head>
         <body
           className={`${notoSans.variable} antialiased`}
         >
